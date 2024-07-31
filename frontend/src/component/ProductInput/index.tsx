@@ -11,8 +11,8 @@ function ProductInput() {
       value={productName}
       onChange={(e) => setProductName(e.target.value)}
       variant="outlined"
-      fullWidth
       margin="normal"
+      fullWidth
       sx={{direction: 'rtl'}}
     />
   );

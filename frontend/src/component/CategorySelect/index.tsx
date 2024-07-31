@@ -6,7 +6,7 @@ function CategorySelect() {
 
     return (
         <FormControl fullWidth margin="normal">
-            <InputLabel>Category</InputLabel>
+            <InputLabel>קטגוריות</InputLabel>
             <Select
                 value={categoryId}
                 onChange={(e) => setCategoryId(e.target.value as string)}
@@ -14,7 +14,7 @@ function CategorySelect() {
                 fullWidth
             >
                 {categories?.map((category) => (
-                    <MenuItem key={category.id} value={category.id}>
+                    <MenuItem key={category.id} value={category.id} sx={{ direction: 'rtl' }}>
                         {category.categoryName}
                     </MenuItem>
                 ))}

@@ -1,9 +1,6 @@
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import { useTheme } from '@mui/material/styles';
 
 function Footer() {
-    const theme = useTheme();
 
     return (
         <Box component="footer" sx={{
@@ -17,9 +14,6 @@ function Footer() {
             right: 0,
             zIndex: 1000,
         }}>
-            <Typography variant="body1">
-                {'Footer Content'}
-            </Typography>
         </Box>
     );
 }

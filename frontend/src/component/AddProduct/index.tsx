@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import { useProductContext } from '../../context/index';
 
 function AddProduct() {
@@ -11,8 +11,11 @@ function AddProduct() {
             color="primary"
             onClick={addProduct}
             fullWidth
+            sx={{ marginTop: '20px' }}
         >
-            Add Product
+            <Typography variant="h5">
+                הוסף מוצר
+            </Typography>
         </Button>
     );
 }

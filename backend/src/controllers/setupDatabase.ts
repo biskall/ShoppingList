@@ -4,10 +4,11 @@ import sequelize from "../config/database";
 import { CategoryDB } from "../models/Category";
 
 const categories: Category[] = [
-  { id: "1", categoryName: "Electronics" },
-  { id: "2", categoryName: "Books" },
-  { id: "3", categoryName: "Clothing" },
-  { id: "4", categoryName: "Food" },
+  { id: "1", categoryName: "אלקטרוניקה" },
+  { id: "2", categoryName: "ספרים" },
+  { id: "3", categoryName: "בגדים" },
+  { id: "4", categoryName: "אוכל" },
+  { id: "5", categoryName: "רהיטים" },
 ];
 
 const setupDatabase = async () => {

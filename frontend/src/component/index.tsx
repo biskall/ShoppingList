@@ -6,3 +6,4 @@ export { default as ProductInput } from './ProductInput';
 export { default as ProductList } from './ProductList';
 export { default as CreateProduct } from './CreateProduct';
 export { default as SubmitProducts } from './SubmitProducts';
+export { default as TotalItems } from './TotalItems';
