@@ -22,6 +22,7 @@ export interface ProductContextType {
   isLoading: boolean;
   isError: boolean;
   orderSuccess: boolean;
+  productsQuantity: number;
 }
 
 export interface CategoriesState {
@@ -30,4 +31,5 @@ export interface CategoriesState {
 
 export interface ProductsState {
   products: Product[] | null;
+  quantity: number;
 }

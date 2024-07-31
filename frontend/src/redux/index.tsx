@@ -15,17 +15,6 @@ const persistConfiguration = {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
 };
-//TODO: ADD apiQueries also to product and check the post rest api in the server
-// export const store = configureStore({
-//     reducer: {
-//         categories: slices.categoriesSliceReducer,
-//         [apiQueries.categoriesReducerPath]: apiQueries.categoriesReducer,
-//     },
-//     middleware: (getDefaultMiddleware) =>
-//         getDefaultMiddleware(persistConfiguration).concat([
-//             apiQueries.categoriesMiddleware,
-//         ]),
-// });
 
 export const store = configureStore({
     reducer: {

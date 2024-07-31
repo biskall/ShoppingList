@@ -15,12 +15,9 @@ export const categoriesSlice = createSlice({
       categoriesEndpoints.getCategories.matchFulfilled,
       (state, { payload }: PayloadAction<Category[]>) => {
         state.categories = payload;
-        console.log("state.categories =>", state.categories);
-        console.log("payload =>", payload);
       }
     );
   },
 });
 
 export const categoriesSliceReducer = categoriesSlice.reducer;
-export const { } = categoriesSlice.actions;

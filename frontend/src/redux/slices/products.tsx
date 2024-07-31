@@ -4,31 +4,26 @@ import { Product, ProductsState } from "../../interfaces/types";
 
 const initialState: ProductsState = {
     products: null,
+    quantity: 0,
 };
 
 export const productsSlice = createSlice({
     name: "products",
     initialState,
-    reducers: {},
+    reducers: {
+        countTotalItems(state, action: PayloadAction<{ quantity: number }>) {
+            state.quantity += action.payload.quantity;
+        },
+    },
     extraReducers: (builder) => {
-        builder.addMatcher(
-            productsEndpoints.getProducts.matchFulfilled,
-            (state, { payload }: PayloadAction<Product[]>) => {
-                state.products = payload;
-                console.log("state.products =>", state.products);
-                console.log("payload =>", payload);
-            }
-        );
         builder.addMatcher(
             productsEndpoints.orderProducts.matchFulfilled,
             (state, { payload }: PayloadAction<Product[]>) => {
                 state.products = payload;
-                console.log("Updated state.products after ordering =>", state.products);
-                console.log("payload =>", payload);
             }
         );
     },
 });
 
 export const productsSliceReducer = productsSlice.reducer;
-export const { } = productsSlice.actions;
+export const productsActions = productsSlice.actions;

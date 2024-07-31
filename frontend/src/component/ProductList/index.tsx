@@ -20,7 +20,7 @@ function ProductList() {
 
     return (
         <Box display="flex" justifyContent="center" alignItems="center" width="100%">
-            <Grid container spacing={6} md={12} justifyContent="center" >
+            <Grid container item spacing={6} md={12} justifyContent="center" >
                 {categories.map(category => (
                     <Grid item xs={12} sm={6} md={2} key={category.id}>
                         <Typography variant="h6" align="center">{category.categoryName}</Typography>

@@ -1,7 +1,8 @@
 import { createContext, useContext, useState, ReactNode, useEffect, useMemo } from 'react';
 import { Product, ProductContextType, Category } from '../../interfaces/types';
-import { useGetCategoriesQuery, useOrderProductsMutation, getCategories, RootState } from '../../redux/index';
-import { useSelector } from 'react-redux';
+import { useGetCategoriesQuery, useOrderProductsMutation, getProductsQuantity, getCategories, RootState, productsActions } from '../../redux/index';
+import { useSelector, useDispatch } from 'react-redux';
+
 
 const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
@@ -13,13 +14,11 @@ export function ProductProvider({ children }: ProductProviderProps) {
     const [productName, setProductName] = useState('');
     const [categoryId, setCategoryId] = useState('');
     const [productList, setProductList] = useState<Product[]>([]);
-    const { isSuccess } = useGetCategoriesQuery();
+    useGetCategoriesQuery();
+    const dispatch = useDispatch();
     const [orderProducts, { isLoading, isError, isSuccess: orderSuccess }] = useOrderProductsMutation();
     const categories = useSelector((state: RootState) => getCategories(state));
-
-    useEffect(() => {
-        console.log("isSuccess =>", isSuccess);
-    }, [isSuccess]);
+    const productsQuantity = useSelector((state: RootState) => getProductsQuantity(state));
 
     const addProduct = () => {
         const isExistProduct = productList.find(prod => prod.categoryId === categoryId && prod.name === productName);
@@ -31,10 +30,11 @@ export function ProductProvider({ children }: ProductProviderProps) {
                     : prod
             );
             setProductList(updatedProductList);
+            dispatch(productsActions.countTotalItems({ quantity: 1 }));
         } else if (productName && categoryId) {
             setProductList([...productList, { name: productName, categoryId, quantity: 1 }]);
+            dispatch(productsActions.countTotalItems({ quantity: 1 }));
         }
-
         setProductName('');
         setCategoryId('');
     };
@@ -45,7 +45,6 @@ export function ProductProvider({ children }: ProductProviderProps) {
 
     const submitProducts = async () => {
         try {
-            console.log("productList =>", productList);
             await orderProducts({ products: productList });
             clearProductList();
         } catch (error) {
@@ -54,7 +53,7 @@ export function ProductProvider({ children }: ProductProviderProps) {
     };
 
     return (
-        <ProductContext.Provider value={{ productName, setProductName, categoryId, setCategoryId, productList, addProduct, categories, clearProductList, submitProducts, isLoading, isError, orderSuccess }}>
+        <ProductContext.Provider value={{ productName, setProductName, categoryId, setCategoryId, productList, addProduct, categories, clearProductList, submitProducts, isLoading, isError, orderSuccess, productsQuantity }}>
             {children}
         </ProductContext.Provider>
     );
